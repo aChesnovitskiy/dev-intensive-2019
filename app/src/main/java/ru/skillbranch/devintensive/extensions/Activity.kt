@@ -12,7 +12,7 @@ fun Activity.hideKeyboard() {
     inputMethodManager.hideSoftInputFromWindow(window.decorView.windowToken, 0)
 }
 
-fun Activity.isKeyBoardOpen(): Boolean {
+fun Activity.isKeyboardOpen(): Boolean {
     val permissibleError = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50F, resources.displayMetrics).toInt()
     val rootView = findViewById<View>(android.R.id.content)
     val rect = Rect()
@@ -22,6 +22,6 @@ fun Activity.isKeyBoardOpen(): Boolean {
     return difference > permissibleError
 }
 
-fun Activity.isKeyBoardClosed(): Boolean {
-    return !this.isKeyBoardOpen()
+fun Activity.isKeyboardClosed(): Boolean {
+    return !this.isKeyboardOpen()
 }
