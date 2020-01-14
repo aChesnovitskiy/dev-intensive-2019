@@ -15,14 +15,14 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
 
     private fun validation(answer: String): Pair<Boolean, String> = when (question) {
         Question.NAME -> {
-            if (answer[0].isUpperCase()) {
+            if (answer.length != 0 && answer[0].isUpperCase()) {
                 true to ""
             } else {
                 false to "Имя должно начинаться с заглавной буквы"
             }
         }
         Question.PROFESSION -> {
-            if (answer[0].isLowerCase()) {
+            if (answer.length != 0 && answer[0].isLowerCase()) {
                 true to ""
             } else {
                 false to "Профессия должна начинаться со строчной буквы"
@@ -57,7 +57,7 @@ class Bender(var status: Status = Status.NORMAL, var question: Question = Questi
 fun listenAnswer(answer: String): Pair<String, Triple<Int, Int, Int>> {
     val (isValidated, validationFailText) = validation(answer)
     return if (isValidated) {
-        if (question.answers.contains(answer)) {
+        if (question.answers.contains(answer.toLowerCase())) {
             question = question.nextQuestion()
             "Отлично - ты справился\n${question.question}" to status.color
         } else {
@@ -96,7 +96,7 @@ enum class Status(val color: Triple<Int, Int, Int>) {
 }
 
 enum class Question(val question: String, val answers: List<String>) {
-    NAME("Как меня зовут?", listOf("Bender", "Бендер")) {
+    NAME("Как меня зовут?", listOf("bender", "бендер")) {
         override fun nextQuestion(): Question = PROFESSION
     },
     PROFESSION("Назови мою профессию?", listOf("bender", "сгибальщик")) {
@@ -111,7 +111,7 @@ enum class Question(val question: String, val answers: List<String>) {
     SERIAL("Мой серийный номер?", listOf("2716057")) {
         override fun nextQuestion(): Question = IDLE
     },
-    IDLE("На этом все, больше вопросов нет", listOf()) {
+    IDLE("На этом все, вопросов больше нет", listOf()) {
         override fun nextQuestion(): Question = IDLE
     };
 
