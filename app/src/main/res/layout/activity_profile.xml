@@ -76,7 +76,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorAccentSurface    "
+        android:background="?attr/colorAccentSurface"
         android:orientation="horizontal">
 
         <LinearLayout

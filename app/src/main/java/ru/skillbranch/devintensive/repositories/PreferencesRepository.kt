@@ -22,19 +22,19 @@ object PreferencesRepository {
     }
 
     fun saveAppTheme(theme: Int) {
-        putValue(APP_THEME to theme)
+        putValue(APP_THEME to theme).apply()
     }
 
     fun getAppTheme(): Int = prefs.getInt(APP_THEME, AppCompatDelegate.MODE_NIGHT_NO)
 
     fun saveProfile(profile: Profile) {
-        with(profile) {
-            putValue(FIRST_NAME to "firstName")
-            putValue(LAST_NAME to "lastName")
-            putValue(ABOUT to "about")
-            putValue(REPOSITORY to "repository")
-            putValue(RATING to "rating")
-            putValue(RESPECT to "respect")
+        with (profile) {
+            putValue(FIRST_NAME to firstName).apply()
+            putValue(LAST_NAME to lastName).apply()
+            putValue(ABOUT to about).apply()
+            putValue(REPOSITORY to repository).apply()
+            putValue(RATING to rating).apply()
+            putValue(RESPECT to respect).apply()
         }
     }
 
@@ -47,7 +47,8 @@ object PreferencesRepository {
         prefs.getInt(RESPECT, 0)
     )
 
-    private fun putValue(pair: Pair<String, Any>) = with(prefs.edit()) {
+    /* Put data into the SharedPreferences */
+    private fun putValue(pair: Pair<String, Any>) = with (prefs.edit()) {
         val key = pair.first
         val value = pair.second
 

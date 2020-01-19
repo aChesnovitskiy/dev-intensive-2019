@@ -11,6 +11,7 @@ data class Profile (
     val rank: String = "Junior Android Developer"
     val nickName: String = "John Doe" // TODO implement me
 
+    /* Create map of profile's parameters for easy work with them */
     fun toMap(): Map<String, Any> = mapOf(
         "nickName" to nickName,
         "rank" to rank,

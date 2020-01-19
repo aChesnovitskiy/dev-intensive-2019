@@ -28,12 +28,15 @@ class ProfileViewModel : ViewModel() {
 
     fun getTheme(): LiveData<Int> = appTheme
 
+    /* Save profile's data to the profile LiveData and to the Repository */
     fun saveProfileData(profile: Profile) {
         repository.saveProfile(profile)
         profileData.value = profile
     }
 
+    /* Switch application theme (by click on the button) */
     fun switchTheme() {
+        // AppCompatDelegate helps bring Material Design goodness to pre Lollipop Android versions
         if (appTheme.value == AppCompatDelegate.MODE_NIGHT_YES) {
             appTheme.value = AppCompatDelegate.MODE_NIGHT_NO
         } else {

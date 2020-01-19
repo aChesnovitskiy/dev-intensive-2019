@@ -19,7 +19,6 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.extensions.hideKeyboard
-import ru.skillbranch.devintensive.models.Bender
 import ru.skillbranch.devintensive.models.Profile
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
@@ -38,6 +37,7 @@ class ProfileActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
+
         initViews(savedInstanceState)
         initViewModel()
         Log.d("M_ProfileActivity", "onCreate")
@@ -49,17 +49,23 @@ class ProfileActivity : AppCompatActivity() {
         outState.putBoolean(IS_EDIT_MODE, isEditMode)
     }
 
+    /* Initialize ViewModel */
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        // Set observer for profile LiveData
         viewModel.getProfileData().observe(this, Observer { updateUI(it)})
+        // Set observer for appTheme LiveData
         viewModel.getTheme().observe(this, Observer { updateTheme(it) })
     }
 
+    /* Switch theme depending on mode obtained from the appTheme LiveData */
     private fun updateTheme(mode: Int) {
         Log.d("M_ProfileActivity", "updateTheme")
+        // AppCompatDelegate helps bring Material Design goodness to pre Lollipop Android versions
         delegate.setLocalNightMode(mode)
     }
 
+    /* Update data in Views depending on data from the profile LiveData */
     private fun updateUI(profile: Profile) {
         profile.toMap().also {
             for ((k, v) in viewFields) {
@@ -68,7 +74,9 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    /* Initialize Activity UI and set listeners for "edit/save" and "switch theme" buttons */
     private fun initViews(savedInstanceState: Bundle?) {
+        // Create map of all Views for easy work with them
         viewFields = mapOf(
             "nickName" to tv_nick_name,
             "rank" to tv_rank,
@@ -94,7 +102,9 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    /* Switch Activity UI depending on edit/show mode */
     private fun showCurrentMode(isEdit: Boolean) {
+        // Get map of editable Views from map of all Views
         var info = viewFields.filter {
             setOf(
                 "firstName",
@@ -103,6 +113,7 @@ class ProfileActivity : AppCompatActivity() {
                 "repository"
             ).contains(it.key)
         }
+        // Change view of editable Views
         for ((_, v) in info) {
             v as EditText
             v.isFocusable = isEdit
@@ -114,6 +125,7 @@ class ProfileActivity : AppCompatActivity() {
         ic_eye.visibility = if (isEdit) View.GONE else View.VISIBLE
         wr_about.isCounterEnabled = isEdit
 
+        // Switch view of edit/save button
         with(btn_edit) {
             val filter: ColorFilter? = if (isEdit) {
                 PorterDuffColorFilter(
@@ -135,6 +147,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+    /* Get profile's data from editable Views and save it through the ViewModel */
     fun saveProfileInfo() {
         Profile(
             firstName = et_first_name.text.toString(),

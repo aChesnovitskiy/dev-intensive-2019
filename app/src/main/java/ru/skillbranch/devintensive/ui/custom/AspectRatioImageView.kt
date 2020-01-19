@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.widget.ImageView
 import ru.skillbranch.devintensive.R
 
+/* Custom ImageView with selection of aspect ratio */
 class AspectRatioImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -18,6 +19,7 @@ class AspectRatioImageView @JvmOverloads constructor(
     private var aspectRatio = DEFAULT_ASPECT_RATIO
 
     init {
+        // Get aspect ratio
         if (attrs != null) {
             val a = context.obtainStyledAttributes(attrs, R.styleable.AspectRatioImageView)
             aspectRatio = a.getFloat(R.styleable.AspectRatioImageView_aspectRatio, DEFAULT_ASPECT_RATIO)
@@ -25,6 +27,7 @@ class AspectRatioImageView @JvmOverloads constructor(
         }
     }
 
+    /* Set dimension depending on image width and aspect ratio */
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         val newHeight = (measuredWidth / aspectRatio).toInt()
