@@ -30,10 +30,10 @@ object Utils {
         return buildString {
             for (char: Char in payload) {
                 when {
-                    dictionary.get(char.toString()) != null -> append(dictionary.getValue(char.toString()))
-                    char.isUpperCase() && dictionary.get(char.toString().toLowerCase(Locale.getDefault())) != null ->
+                    dictionary[char.toString()] != null -> append(dictionary.getValue(char.toString()))
+                    char.isUpperCase() && dictionary[char.toString().toLowerCase(Locale.getDefault())] != null ->
                         append(dictionary.getValue(char.toString().toLowerCase(Locale.getDefault())).capitalize())
-                    char.toString().equals(" ") -> append(divider)
+                    char.toString() == " " -> append(divider)
                     else -> append(char.toString())
                 }
             }
@@ -43,10 +43,14 @@ object Utils {
     fun toInitials(firstName: String?, lastName: String?): String? {
         val initials: String?
         when {
-            firstName.isNullOrBlank() && lastName.isNullOrBlank() -> initials = null
-            !firstName.isNullOrBlank() && lastName.isNullOrBlank() -> initials = firstName.take(1).toUpperCase(Locale.getDefault())
-            firstName.isNullOrBlank() && !lastName.isNullOrBlank() -> initials = lastName.take(1).toUpperCase(Locale.getDefault())
-            else -> initials = "${firstName?.take(1)?.toUpperCase(Locale.getDefault())}${lastName?.take(1)?.toUpperCase(Locale.getDefault())}"
+            firstName.isNullOrBlank() && lastName.isNullOrBlank() ->
+                initials = null
+            !firstName.isNullOrBlank() && lastName.isNullOrBlank() ->
+                initials = firstName.take(1).toUpperCase(Locale.getDefault())
+            firstName.isNullOrBlank() && !lastName.isNullOrBlank() ->
+                initials = lastName.take(1).toUpperCase(Locale.getDefault())
+            else ->
+                initials = "${firstName?.take(1)?.toUpperCase(Locale.getDefault())}${lastName?.take(1)?.toUpperCase(Locale.getDefault())}"
         }
         return initials
     }

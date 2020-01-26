@@ -34,7 +34,7 @@
                 android:background="@drawable/btn_round_bg"
                 android:src="@drawable/ic_switch_day_night" />
 
-            <ImageView
+            <ru.skillbranch.devintensive.ui.custom.CircleImageView
                 android:id="@+id/iv_avatar"
                 android:layout_width="@dimen/avatar_round_size_112"
                 android:layout_height="@dimen/avatar_round_size_112"
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/iv_avatar"
                 android:layout_centerHorizontal="true"
-                android:text="John Doe"/>
+                android:text="Nickname"/>
 
             <TextView
                 style="@style/Profile.Header.Rank"
@@ -245,10 +245,12 @@
             android:src="@drawable/ic_repo"/>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/wr_repository"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_normal_16"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            app:errorEnabled="true">
 
             <EditText
                 style="@style/Profile.EditText.Single"

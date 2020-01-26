@@ -57,4 +57,9 @@
         <item name="android:minHeight">@dimen/spacing_maximum_72</item>
     </style>
 
+    <!-- Splash-screen theme -->
+    <style name="AppTheme.SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
 </resources>

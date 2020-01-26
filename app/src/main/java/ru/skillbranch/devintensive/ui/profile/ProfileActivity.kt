@@ -6,6 +6,8 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
@@ -13,6 +15,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -20,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
 class ProfileActivity : AppCompatActivity() {
@@ -30,10 +34,11 @@ class ProfileActivity : AppCompatActivity() {
 
     private lateinit var viewModel: ProfileViewModel
     var isEditMode = false
+    var isRepositoryValidate = true
     lateinit var viewFields: Map<String, TextView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // TODO set custom Theme this before super and setContentView
+        setTheme(R.style.AppTheme)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -42,7 +47,6 @@ class ProfileActivity : AppCompatActivity() {
         initViewModel()
         Log.d("M_ProfileActivity", "onCreate")
     }
-
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -71,12 +75,15 @@ class ProfileActivity : AppCompatActivity() {
             for ((k, v) in viewFields) {
                 v.text = it[k].toString()
             }
+            val initials = Utils.toInitials(it["firstName"].toString(), it["lastName"].toString())
+            iv_avatar.setInitials(initials)
         }
     }
 
-    /* Initialize Activity UI and set listeners for "edit/save" and "switch theme" buttons */
+    /* Initialize Activity UI and set listeners for "edit/save" and "switch theme" buttons
+    and for et_repository text changed */
     private fun initViews(savedInstanceState: Bundle?) {
-        // Create map of all Views for easy work with them
+        // Create map of Views for easy work with them
         viewFields = mapOf(
             "nickName" to tv_nick_name,
             "rank" to tv_rank,
@@ -92,7 +99,10 @@ class ProfileActivity : AppCompatActivity() {
         showCurrentMode(isEditMode)
 
         btn_edit.setOnClickListener {
-            if (isEditMode) saveProfileInfo()
+            if (isEditMode) {
+                if (!isRepositoryValidate) et_repository.setText("")
+                saveProfileInfo()
+            }
             isEditMode = !isEditMode
             showCurrentMode(isEditMode)
         }
@@ -100,6 +110,25 @@ class ProfileActivity : AppCompatActivity() {
         btn_switch_theme.setOnClickListener{
             viewModel.switchTheme()
         }
+
+        et_repository.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                val text = s.toString()
+                isRepositoryValidate = repositoryValidation(text)
+                if (isRepositoryValidate) wr_repository.error = null else wr_repository.error = "Невалидный адрес репозитория"
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
+    }
+
+    private fun repositoryValidation(text: String) : Boolean {
+        return true
     }
 
     /* Switch Activity UI depending on edit/show mode */

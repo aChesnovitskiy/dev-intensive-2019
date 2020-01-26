@@ -4,9 +4,15 @@
         <attr name="aspectRatio" format="float"/>
     </declare-styleable>
 
+    <declare-styleable name="CircleImageViewBitmap">
+        <attr name="cvbm_borderColor" format="color"/>
+        <attr name="cvbm_borderWidth" format="dimension"/>
+    </declare-styleable>
+
     <declare-styleable name="CircleImageView">
         <attr name="cv_borderColor" format="color"/>
         <attr name="cv_borderWidth" format="dimension"/>
+        <attr name="cv_initials" format="string"/>
     </declare-styleable>
     
     <attr name="colorAccentSurface" format="reference"/>
