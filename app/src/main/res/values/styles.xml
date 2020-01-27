@@ -58,7 +58,7 @@
     </style>
 
     <!-- Splash-screen theme -->
-    <style name="AppTheme.SplashTheme" parent="AppTheme">
+    <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 

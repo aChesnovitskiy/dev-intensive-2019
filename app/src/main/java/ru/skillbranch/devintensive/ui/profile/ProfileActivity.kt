@@ -115,7 +115,7 @@ class ProfileActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 val text = s.toString()
                 isRepositoryValidate = repositoryValidation(text)
-                if (isRepositoryValidate) wr_repository.error = null else wr_repository.error = "Невалидный адрес репозитория"
+                if (isRepositoryValidate || text.isEmpty()) wr_repository.error = null else wr_repository.error = "Невалидный адрес репозитория"
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -128,7 +128,11 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun repositoryValidation(text: String) : Boolean {
-        return true
+        val exceptions = "(enterprise)|(features)|(topics)|(collections)|(trending)|(events)|"+
+                "(marketplace)|(pricing)|(nonprofit)|(customer-stories)|(security)|(login)|(join)"
+        val regex = "^(https:\\/\\/)?(www\\.)?(github\\.com\\/)(?!($exceptions)"+
+                "(?=\\/|\$))[a-zA-Z\\d](?:[a-zA-Z\\d]|-(?=[a-zA-Z\\d])){0,38}(\\/)?\$"
+        return text.matches(regex.toRegex())
     }
 
     /* Switch Activity UI depending on edit/show mode */

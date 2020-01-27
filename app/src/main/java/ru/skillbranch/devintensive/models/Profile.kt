@@ -10,8 +10,8 @@ data class Profile (
     val rating: Int = 0,
     val respect: Int = 0
 ) {
-    val rank: String = "Junior Android Developer"
-    val nickName: String = Utils.transliteration("$firstName $lastName", "_")
+    private val rank: String = "Junior Android Developer"
+    private val nickName: String = Utils.transliteration("$firstName $lastName", "_")
 
     /* Create map of profile's parameters for easy work with them */
     fun toMap(): Map<String, Any> = mapOf(
