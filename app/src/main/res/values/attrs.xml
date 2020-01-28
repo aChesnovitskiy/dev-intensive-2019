@@ -15,7 +15,7 @@
         <attr name="cv_initials" format="string"/>
     </declare-styleable>
     
-    <attr name="colorAccentSurface" format="reference"/>
+    <attr name="colorAccentedSurface" format="reference"/>
     <attr name="colorDivider" format="reference"/>
     <attr name="colorIcon" format="reference"/>
 </resources>

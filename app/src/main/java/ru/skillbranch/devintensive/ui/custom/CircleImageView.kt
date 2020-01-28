@@ -47,7 +47,7 @@ class CircleImageView @JvmOverloads constructor(
     private val viewRect = Rect()
     private val borderRect = Rect()
 
-    private var isImageMode = true
+    private var isImageMode = false
 
     init {
         if (attrs != null) {
@@ -97,7 +97,7 @@ class CircleImageView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
 //        super.onDraw(canvas)
 
-        isImageMode = initials.isBlank()
+//        isImageMode = initials.isBlank()
 
         if (drawable != null && isImageMode) {
             drawImage(canvas)

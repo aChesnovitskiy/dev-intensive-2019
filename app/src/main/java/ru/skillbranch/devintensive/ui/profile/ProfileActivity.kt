@@ -115,7 +115,13 @@ class ProfileActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
                 val text = s.toString()
                 isRepositoryValidate = repositoryValidation(text)
-                if (isRepositoryValidate || text.isEmpty()) wr_repository.error = null else wr_repository.error = "Невалидный адрес репозитория"
+                if (isRepositoryValidate || text.isEmpty()) {
+                    wr_repository.isErrorEnabled = false
+                    wr_repository.error = null
+                } else {
+                    wr_repository.isErrorEnabled = true
+                    wr_repository.error = "Невалидный адрес репозитория"
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
