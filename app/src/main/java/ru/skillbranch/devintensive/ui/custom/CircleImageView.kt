@@ -47,7 +47,7 @@ class CircleImageView @JvmOverloads constructor(
     private val viewRect = Rect()
     private val borderRect = Rect()
 
-    private var isImageMode = false
+    private var isImageMode = true
 
     init {
         if (attrs != null) {
@@ -97,13 +97,15 @@ class CircleImageView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
 //        super.onDraw(canvas)
 
-//        isImageMode = initials.isBlank()
+        isImageMode = initials.isBlank()
 
         if (drawable != null && isImageMode) {
             drawImage(canvas)
         } else {
             drawInitials(canvas)
         }
+
+//        drawImage(canvas)
 
         // Resize rect
         val halfBorder = (borderWidth / 2).toInt()
@@ -205,6 +207,15 @@ class CircleImageView @JvmOverloads constructor(
         }
         invalidate()
     }
+
+//    fun setInitialsDrawable(drawable: Drawable?) {
+//        if (initials.isNullOrEmpty()){
+//            this.initials = ""
+//        } else {
+//            this.initials = initials
+//        }
+//        invalidate()
+//    }
 
     override fun onSaveInstanceState(): Parcelable? {
         val savedState = SavedState(super.onSaveInstanceState())

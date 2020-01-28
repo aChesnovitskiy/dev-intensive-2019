@@ -77,6 +77,8 @@ class ProfileActivity : AppCompatActivity() {
             }
             val initials = Utils.toInitials(it["firstName"].toString(), it["lastName"].toString())
             iv_avatar.setInitials(initials)
+//            iv_avatar.setImageDrawable()
+//            iv_avatar.invalidate()
         }
     }
 
