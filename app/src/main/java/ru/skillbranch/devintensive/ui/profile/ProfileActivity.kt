@@ -1,14 +1,12 @@
 package ru.skillbranch.devintensive.ui.profile
 
-import android.graphics.Color
-import android.graphics.ColorFilter
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
+import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.util.TypedValue
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -22,7 +20,9 @@ import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.extensions.hideKeyboard
+import ru.skillbranch.devintensive.extensions.spToPx
 import ru.skillbranch.devintensive.models.Profile
+import ru.skillbranch.devintensive.ui.custom.TextBitmapBuilder
 import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
@@ -75,11 +75,28 @@ class ProfileActivity : AppCompatActivity() {
             for ((k, v) in viewFields) {
                 v.text = it[k].toString()
             }
-            val initials = Utils.toInitials(it["firstName"].toString(), it["lastName"].toString())
-            iv_avatar.setInitials(initials)
-//            iv_avatar.setImageDrawable()
-//            iv_avatar.invalidate()
+            val initials = Utils.toInitials(it["firstName"].toString(), it["lastName"].toString()) ?: ""
+//            iv_avatar.setInitials(initials)
+            if (!initials.isBlank()) {
+                val avatar = getAvatarBitmap(initials)
+                iv_avatar.setImageBitmap(avatar)
+            } else {
+                iv_avatar.setImageResource(R.drawable.avatar_default)
+            }
+
         }
+    }
+
+    private fun getAvatarBitmap(text: String): Bitmap {
+        val color = TypedValue()
+        theme.resolveAttribute(R.attr.colorAccent, color, true)
+
+        return TextBitmapBuilder(iv_avatar.layoutParams.width, iv_avatar.layoutParams.height)
+            .setBackgroundColor(color.data)
+            .setText(text)
+            .setTextSize(this.spToPx(48))
+            .setTextColor(Color.WHITE)
+            .build()
     }
 
     /* Initialize Activity UI and set listeners for "edit/save" and "switch theme" buttons
@@ -146,7 +163,7 @@ class ProfileActivity : AppCompatActivity() {
     /* Switch Activity UI depending on edit/show mode */
     private fun showCurrentMode(isEdit: Boolean) {
         // Get map of editable Views from map of all Views
-        var info = viewFields.filter {
+        val info = viewFields.filter {
             setOf(
                 "firstName",
                 "lastName",
@@ -177,7 +194,7 @@ class ProfileActivity : AppCompatActivity() {
                 null
             }
 
-            var icon = if (isEdit) {
+            val icon = if (isEdit) {
                 resources.getDrawable(R.drawable.ic_save_white_24dp, theme)
             } else {
                 resources.getDrawable(R.drawable.ic_edit_black_24dp, theme)

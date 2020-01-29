@@ -29,7 +29,7 @@ class CircleImageView @JvmOverloads constructor(
         private const val DEFAULT_SIZE = 40
         private const val DEFAULT_INITIALS = ""
         private const val DEFAULT_INITIALS_TEXT_COLOR = Color.WHITE
-        private const val DEFAULT_INITIALS_BACKGROUND_COLOR = Color.BLACK
+        private const val DEFAULT_INITIALS_BACKGROUND_COLOR = R.attr.colorAccent
     }
 
     @ColorInt
@@ -72,6 +72,9 @@ class CircleImageView @JvmOverloads constructor(
         val typedArray = context.obtainStyledAttributes(R.style.AppTheme, attributes)
         initialsBackgroundColor = typedArray.getColor(0, DEFAULT_INITIALS_BACKGROUND_COLOR)
         typedArray.recycle()
+//        val color = TypedValue()
+//        context.theme.resolveAttribute(R.attr.colorAccent, color, true)
+//        initialsBackgroundColor = color.data
 
         scaleType = ScaleType.CENTER_CROP
         setup()
@@ -97,15 +100,15 @@ class CircleImageView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
 //        super.onDraw(canvas)
 
-        isImageMode = initials.isBlank()
+//        isImageMode = initials.isBlank()
 
-        if (drawable != null && isImageMode) {
-            drawImage(canvas)
-        } else {
-            drawInitials(canvas)
-        }
+//        if (drawable != null && isImageMode) {
+//            drawImage(canvas)
+//        } else {
+//            drawInitials(canvas)
+//        }
 
-//        drawImage(canvas)
+        drawImage(canvas)
 
         // Resize rect
         val halfBorder = (borderWidth / 2).toInt()
@@ -207,15 +210,6 @@ class CircleImageView @JvmOverloads constructor(
         }
         invalidate()
     }
-
-//    fun setInitialsDrawable(drawable: Drawable?) {
-//        if (initials.isNullOrEmpty()){
-//            this.initials = ""
-//        } else {
-//            this.initials = initials
-//        }
-//        invalidate()
-//    }
 
     override fun onSaveInstanceState(): Parcelable? {
         val savedState = SavedState(super.onSaveInstanceState())
