@@ -4,6 +4,10 @@
 
     </style>
 
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
     <style name="Profile.EditText" parent="Profile">
         <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:paddingTop">@dimen/spacing_tiny_4</item>
@@ -60,6 +64,67 @@
     <!-- Splash-screen theme -->
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="ActivityTransitions" parent="android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/bottom_up</item>
+        <item name="android:activityCloseEnterAnimation">@anim/idle</item>
+        <item name="android:activityOpenExitAnimation">@anim/idle</item>
+        <item name="android:activityCloseExitAnimation">@anim/bottom_down</item>
+    </style>
+
+    <style name="ChatItem" />
+
+    <style name="ChatItem.Username">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="ChatItem.Username.Light">
+        <item name="android:textColor">@color/color_title</item>
+    </style>
+
+    <style name="ChatItem.Username.Dark">
+        <item name="android:textColor">@color/color_title_night</item>
+    </style>
+
+    <style name="ChatItem.Title">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ChatItem.Title.Light">
+        <item name="android:textColor">@color/color_title</item>
+    </style>
+
+    <style name="ChatItem.Title.Dark">
+        <item name="android:textColor">@color/color_title_night</item>
+    </style>
+
+    <style name="ChatItem.Subtitle">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="ChatItem.Subtitle.Light">
+        <item name="android:textColor">@color/color_subtitle</item>
+    </style>
+
+    <style name="ChatItem.Subtitle.Dark">
+        <item name="android:textColor">@color/color_subtitle_night</item>
+    </style>
+
+    <style name="ChatItem.Date">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="ChatItem.Date.Light">
+        <item name="android:textColor">@color/color_subtitle</item>
+    </style>
+
+    <style name="ChatItem.Date.Dark">
+        <item name="android:textColor">@color/color_subtitle_night</item>
     </style>
 
 </resources>

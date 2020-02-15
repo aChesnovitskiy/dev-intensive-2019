@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/color_primary</item>
         <item name="colorPrimaryDark">@color/color_primary_dark</item>
@@ -11,6 +11,24 @@
         <item name="colorAccentedSurface">@color/color_primary_light</item>
         <item name="colorIcon">@color/color_gray</item>
         <item name="colorDivider">@color/color_divider_dark</item>
+
+        <item name="android:colorBackground">@android:color/white</item>
+
+        <item name="bgCounterColor">@color/color_indicator</item>
+        <item name="bgIndicatorColor">@color/color_green</item>
+
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowAnimationStyle">@style/ActivityTransitions</item>
+
+        <item name="chatItemSwipeBackgroundColor">@color/color_primary_dark</item>
+
+        <item name="chatItemTitleStyle">@style/ChatItem.Title.Light</item>
+        <item name="chatItemSubtitleStyle">@style/ChatItem.Subtitle.Light</item>
+        <item name="chatItemUsernameStyle">@style/ChatItem.Username.Light</item>
+        <item name="chatItemDateStyle">@style/ChatItem.Date.Light</item>
+
+        <item name="snackbarBackgroundColor">@color/color_primary</item>
+        <item name="snackbarTextColor">@android:color/white</item>
     </style>
 
 </resources>

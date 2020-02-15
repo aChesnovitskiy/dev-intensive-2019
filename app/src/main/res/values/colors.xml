@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_primary">#2A1956</color>
+    <color name="color_primary_night">#272727</color>
     <color name="color_primary_dark">#1C0E42</color>
     <color name="color_primary_light">#473770</color>
     <color name="color_accent">#FC4C4C</color>
@@ -11,4 +12,15 @@
     <color name="color_gray_light">#ECECEC</color>
     <color name="color_divider_dark">#1F000000</color>
     <color name="color_divider_light">#1FFFFFFF</color>
+
+    <color name="color_title">#2A1956</color>
+    <color name="color_title_night">@android:color/white</color>
+
+    <color name="color_subtitle">#675F7F</color>
+    <color name="color_subtitle_night">#9CA9BA</color>
+
+    <color name="color_indicator">#581F99</color>
+    <color name="color_green">#4FD149</color>
+
+    <color name="color_background_night">#1d1d1d</color>
 </resources>

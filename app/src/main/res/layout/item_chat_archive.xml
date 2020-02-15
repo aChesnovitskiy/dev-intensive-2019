@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/spacing_maximum_72"
+    android:padding="@dimen/spacing_normal_16">
+
+    <ru.skillbranch.devintensive.ui.custom.CircleImageView
+        android:id="@+id/iv_avatar_archive"
+        android:layout_width="@dimen/avatar_item_size"
+        android:layout_height="@dimen/avatar_item_size"
+        android:layout_marginEnd="@dimen/spacing_normal_16"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/bg_ic_avatar"
+        android:padding="@dimen/spacing_small_8"
+        android:src="@drawable/ic_archive_24dp"
+        app:cv_borderWidth="0dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="?attr/chatItemTitleStyle"
+        android:id="@+id/tv_title_archive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/iv_avatar_archive"
+        android:layout_toStartOf="@id/tv_date_archive"
+        android:layout_marginEnd="@dimen/spacing_normal_16"
+        android:maxLines="1"
+        android:text="@string/archive_of_chats"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="?attr/chatItemUsernameStyle"
+        android:id="@+id/tv_message_author_archive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/iv_avatar_archive"
+        android:layout_below="@id/tv_title_archive"
+        android:layout_marginEnd="@dimen/spacing_tiny_4"
+        tools:text="John_Doe" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="?attr/chatItemSubtitleStyle"
+        android:id="@+id/tv_message_archive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/tv_message_author_archive"
+        android:layout_toStartOf="@id/tv_counter_archive"
+        android:layout_below="@id/tv_title_archive"
+        android:layout_marginEnd="@dimen/spacing_normal_16"
+        tools:text="chat message" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="?attr/chatItemDateStyle"
+        android:id="@+id/tv_date_archive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        tools:text="18:00"/>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_counter_archive"
+        android:layout_width="wrap_content"
+        android:minWidth="@dimen/counter_size"
+        android:layout_height="@dimen/counter_size"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/spacing_tiny_4"
+        android:background="@drawable/bg_counter"
+        android:layout_alignParentBottom="true"
+        android:textSize="10sp"
+        android:textColor="@android:color/white"
+        android:layout_alignParentEnd="true"
+        tools:text="11"/>
+
+</RelativeLayout>

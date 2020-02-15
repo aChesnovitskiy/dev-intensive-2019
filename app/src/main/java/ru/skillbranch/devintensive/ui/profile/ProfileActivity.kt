@@ -16,7 +16,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.extensions.hideKeyboard
@@ -55,7 +54,7 @@ class ProfileActivity : AppCompatActivity() {
 
     /* Initialize ViewModel */
     private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
         // Set observer for profile LiveData
         viewModel.getProfileData().observe(this, Observer { updateUI(it)})
         // Set observer for appTheme LiveData

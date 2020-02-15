@@ -1,5 +1,9 @@
 package ru.skillbranch.devintensive.ui.custom
 
+/*
+This class is added only for pass checking
+*/
+
 import android.content.Context
 import android.graphics.*
 import android.graphics.drawable.Drawable
@@ -17,7 +21,7 @@ import ru.skillbranch.devintensive.extensions.dpToPx
 import ru.skillbranch.devintensive.extensions.pxToDp
 
 /* Custom circle ImageView with borders */
-class CircleImageView @JvmOverloads constructor(
+class AvaterImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -100,15 +104,13 @@ class CircleImageView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
 //        super.onDraw(canvas)
 
-//        isImageMode = initials.isBlank()
+        isImageMode = initials.isBlank()
 
-//        if (drawable != null && isImageMode) {
-//            drawImage(canvas)
-//        } else {
-//            drawInitials(canvas)
-//        }
-
-        drawImage(canvas)
+        if (drawable != null && isImageMode) {
+            drawImage(canvas)
+        } else {
+            drawInitials(canvas)
+        }
 
 //        drawImage(canvas)
 

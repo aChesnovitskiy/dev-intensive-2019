@@ -18,4 +18,17 @@
     <attr name="colorAccentedSurface" format="reference"/>
     <attr name="colorDivider" format="reference"/>
     <attr name="colorIcon" format="reference"/>
+
+    <attr name="chatItemSubtitleStyle" format="reference"/>
+    <attr name="chatItemTitleStyle" format="reference"/>
+    <attr name="chatItemUsernameStyle" format="reference"/>
+    <attr name="chatItemDateStyle" format="reference"/>
+
+    <attr name="chatItemSwipeBackgroundColor" format="reference|color"/>
+
+    <attr name="bgCounterColor" format="reference|color"/>
+    <attr name="bgIndicatorColor" format="reference|color"/>
+
+    <attr name="snackbarBackgroundColor" format="reference|color"/>
+    <attr name="snackbarTextColor" format="reference|color"/>
 </resources>

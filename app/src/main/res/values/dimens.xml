@@ -15,6 +15,14 @@
     <!-- Button size -->
     <dimen name="button_normal_24">24dp</dimen>
     <dimen name="btn_round_size_40">40dp</dimen>
+
+
     <dimen name="avatar_round_size_112">112dp</dimen>
     <dimen name="spacing_maximum_72">72dp</dimen>
+
+    <dimen name="ic_normal">24dp</dimen>
+
+    <dimen name="avatar_item_size">40dp</dimen>
+    <dimen name="counter_size">20dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
 </resources>

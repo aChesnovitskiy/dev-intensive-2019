@@ -58,6 +58,14 @@ fun Date.humanizeDiff(date: Date = Date()): String {
     return humanizeDiff
 }
 
+fun Date.shortFormat(): String {
+    return this.format(if (isSameDay(Date())) "HH:mm" else "dd.MM.yy")
+}
+
+fun Date.isSameDay(date: Date): Boolean {
+    return this.time / DAY == date.time / DAY
+}
+
 enum class TimeUnits {
     SECOND,
     MINUTE,
