@@ -1,4 +1,4 @@
-package ru.skillbranch.devintensive.ui.custom
+package ru.skillbranch.devintensive.utils
 
 import android.graphics.*
 import androidx.annotation.ColorInt

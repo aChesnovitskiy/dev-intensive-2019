@@ -7,21 +7,16 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.util.TypedValue
-import android.view.KeyEvent
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
-import ru.skillbranch.devintensive.extensions.hideKeyboard
 import ru.skillbranch.devintensive.extensions.spToPx
 import ru.skillbranch.devintensive.models.Profile
-import ru.skillbranch.devintensive.ui.custom.TextBitmapBuilder
+import ru.skillbranch.devintensive.utils.TextBitmapBuilder
 import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
@@ -90,7 +85,10 @@ class ProfileActivity : AppCompatActivity() {
         val color = TypedValue()
         theme.resolveAttribute(R.attr.colorAccent, color, true)
 
-        return TextBitmapBuilder(iv_avatar.layoutParams.width, iv_avatar.layoutParams.height)
+        return TextBitmapBuilder(
+            iv_avatar.layoutParams.width,
+            iv_avatar.layoutParams.height
+        )
             .setBackgroundColor(color.data)
             .setText(text)
             .setTextSize(this.spToPx(48))
