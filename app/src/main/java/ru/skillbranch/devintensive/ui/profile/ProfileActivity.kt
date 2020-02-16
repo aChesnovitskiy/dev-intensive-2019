@@ -75,7 +75,6 @@ class ProfileActivity : AppCompatActivity() {
             } else {
                 iv_avatar.setImageResource(R.drawable.avatar_default)
             }
-
         }
     }
 
