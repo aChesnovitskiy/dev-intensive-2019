@@ -12,5 +12,7 @@
 
     <string name="menu_search_title">Поиск</string>
     <string name="archive_of_chats">Архив чатов</string>
-    <string name="selected">Selected</string>
+    <string name="selected">Выбранные</string>
+
+    <string name="creation_of_group">Создание группы</string>
 </resources>

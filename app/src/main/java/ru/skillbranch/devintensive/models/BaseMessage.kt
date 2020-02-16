@@ -22,11 +22,6 @@ abstract class BaseMessage(
                 "image" -> ImageMessage("$lastId", from, chat, isIncoming, date, true, payload.toString())
                 else -> TextMessage("$lastId", from, chat, isIncoming, date, true, payload.toString())
             }
-//          TODO  return when (type) {
-//                "text" -> TextMessage(lastId.toString(), from, chat, date = date, text = payload as String, isIncoming = isIncoming)
-//                "image" -> ImageMessage(lastId.toString(), from, chat, date = date, image = payload as String, isIncoming = isIncoming)
-//                else -> throw IllegalStateException()
-//            }
         }
 
     }

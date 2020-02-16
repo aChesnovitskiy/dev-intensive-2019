@@ -100,15 +100,13 @@ class CircleImageView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas) {
 //        super.onDraw(canvas)
 
-//        isImageMode = initials.isBlank()
+        isImageMode = initials.isBlank()
 
-//        if (drawable != null && isImageMode) {
-//            drawImage(canvas)
-//        } else {
-//            drawInitials(canvas)
-//        }
-
-        drawImage(canvas)
+        if (drawable != null && isImageMode) {
+            drawImage(canvas)
+        } else {
+            drawInitials(canvas)
+        }
 
 //        drawImage(canvas)
 

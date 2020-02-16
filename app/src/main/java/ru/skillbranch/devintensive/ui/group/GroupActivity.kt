@@ -29,7 +29,6 @@ class GroupActivity : AppCompatActivity() {
     private lateinit var viewModel: GroupViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_group)
 
@@ -83,7 +82,6 @@ class GroupActivity : AppCompatActivity() {
         fab.setOnClickListener {
             viewModel.handleCreateGroup()
             finish()
-//          TODO  overridePendingTransition(R.anim.idle, R.anim.bottom_down)
         }
     }
 

@@ -25,14 +25,7 @@ data class Chat(
     fun lastMessageDate(): Date? = if (messages.isNullOrEmpty()) null else messages.last().date
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
-    fun lastMessageShort(): Pair<String, String?> {
-        return when (val lastMessage = messages.lastOrNull()) {
-            is TextMessage -> lastMessage.text.orEmpty() to lastMessage.from.firstName
-            is ImageMessage -> "${lastMessage.from.firstName} - отправил фото" to null
-            null -> "Сообщений еще нет" to null
-            else -> error("not expected message type")
-        }
-    }
+    fun lastMessageShort(): Pair<String, String?> = Utils.toMessageShort(messages.lastOrNull())
 
     fun toChatItem() = if (isSingle()) {
         val user = members.first()
