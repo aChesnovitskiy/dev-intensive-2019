@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.util.TypedValue
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -14,9 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
-import ru.skillbranch.devintensive.extensions.spToPx
 import ru.skillbranch.devintensive.models.Profile
-import ru.skillbranch.devintensive.utils.TextBitmapBuilder
 import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.ProfileViewModel
 
@@ -70,10 +67,11 @@ class ProfileActivity : AppCompatActivity() {
                 v.text = it[k].toString()
             }
             val initials = Utils.toInitials(it["firstName"].toString(), it["lastName"].toString()) ?: ""
-//            iv_avatar.setInitials(initials)
             if (!initials.isBlank()) {
-                val avatar = getAvatarBitmap(initials)
-                iv_avatar.setImageBitmap(avatar)
+            iv_avatar.setInitials(initials)
+                /*by Neikist*/
+//                val avatar = getAvatarBitmap(initials)
+//                iv_avatar.setImageBitmap(avatar)
             } else {
                 iv_avatar.setImageResource(R.drawable.avatar_default)
             }
@@ -81,20 +79,20 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun getAvatarBitmap(text: String): Bitmap {
-        val color = TypedValue()
-        theme.resolveAttribute(R.attr.colorAccent, color, true)
-
-        return TextBitmapBuilder(
-            iv_avatar.layoutParams.width,
-            iv_avatar.layoutParams.height
-        )
-            .setBackgroundColor(color.data)
-            .setText(text)
-            .setTextSize(this.spToPx(48))
-            .setTextColor(Color.WHITE)
-            .build()
-    }
+//    private fun getAvatarBitmap(text: String): Bitmap {
+//        val color = TypedValue()
+//        theme.resolveAttribute(R.attr.colorAccent, color, true)
+//
+//        return TextBitmapBuilder(
+//            iv_avatar.layoutParams.width,
+//            iv_avatar.layoutParams.height
+//        )
+//            .setBackgroundColor(color.data)
+//            .setText(text)
+//            .setTextSize(this.spToPx(48))
+//            .setTextColor(Color.WHITE)
+//            .build()
+//    }
 
     /* Initialize Activity UI and set listeners for "edit/save" and "switch theme" buttons
     and for et_repository text changed */
