@@ -76,7 +76,6 @@ class ProfileActivity : AppCompatActivity() {
                 iv_avatar.setImageResource(R.drawable.avatar_default)
             }
         }
-
     }
 
 //    private fun getAvatarBitmap(text: String): Bitmap {
