@@ -23,4 +23,7 @@
     <color name="color_green">#4FD149</color>
 
     <color name="color_background_night">#1d1d1d</color>
+
+    <color name="color_lt_gray">#FFCCCCCC</color>
+    <color name="color_dk_gray">#FF444444</color>
 </resources>

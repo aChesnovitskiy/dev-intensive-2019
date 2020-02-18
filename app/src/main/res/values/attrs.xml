@@ -20,10 +20,14 @@
     <attr name="chatItemDateStyle" format="reference"/>
 
     <attr name="chatItemSwipeBackgroundColor" format="reference|color"/>
+    <attr name="userSelectedColor" format="reference|color"/>
 
     <attr name="bgCounterColor" format="reference|color"/>
     <attr name="bgIndicatorColor" format="reference|color"/>
 
     <attr name="snackbarBackgroundColor" format="reference|color"/>
     <attr name="snackbarTextColor" format="reference|color"/>
+
+    <attr name="clearedItemColor" format="reference|color"/>
+    <attr name="selectedItemColor" format="reference|color"/>
 </resources>

@@ -1,6 +1,5 @@
 package ru.skillbranch.devintensive.ui.archive
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -12,14 +11,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_archive.*
-import kotlinx.android.synthetic.main.activity_group.*
 import kotlinx.android.synthetic.main.activity_group.toolbar
 import ru.skillbranch.devintensive.R
-import ru.skillbranch.devintensive.models.data.ChatType
+import ru.skillbranch.devintensive.ui.adapters.ArchiveChatItemTouchHelperCallback
 import ru.skillbranch.devintensive.ui.adapters.ChatAdapter
-import ru.skillbranch.devintensive.ui.adapters.ChatItemTouchHelperCallback
 import ru.skillbranch.devintensive.viewmodels.ArchiveViewModel
-import ru.skillbranch.devintensive.viewmodels.MainViewModel
 
 class ArchiveActivity : AppCompatActivity() {
 
@@ -69,7 +65,7 @@ class ArchiveActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        chatAdapter = ChatAdapter {
+        chatAdapter = ChatAdapter(this) {
                     Snackbar.make(rv_archive_list, "Click on ${it.title}", Snackbar.LENGTH_LONG).show()
         }
 
@@ -82,7 +78,7 @@ class ArchiveActivity : AppCompatActivity() {
             addItemDecoration(divider)
         }
 
-        val touchCallback = ChatItemTouchHelperCallback(chatAdapter) {
+        val touchCallback = ArchiveChatItemTouchHelperCallback(chatAdapter, this) {
             viewModel.restoreFromArchive(it.id)
 
             Snackbar.make(

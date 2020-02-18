@@ -1,6 +1,9 @@
 package ru.skillbranch.devintensive.ui.adapters
 
+import android.content.Context
 import android.graphics.Color
+import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +19,7 @@ import ru.skillbranch.devintensive.models.data.ChatItem
 import ru.skillbranch.devintensive.models.data.ChatType
 
 class ChatAdapter(
+    var context: Context,
     val listener: (ChatItem) -> Unit
 ) : RecyclerView.Adapter<ChatAdapter.ChatItemViewHolder>() {
 
@@ -83,11 +87,18 @@ class ChatAdapter(
         ChatItemViewHolder(containerView), ItemTouchViewHolder {
 
         override fun onItemSelected() {
-            itemView.setBackgroundColor(Color.LTGRAY)
+//            TODO make function
+            val tv = TypedValue()
+            context.theme.resolveAttribute(R.attr.selectedItemColor, tv, true)
+            val color = tv.data
+            itemView.setBackgroundColor(color)
         }
 
         override fun onItemCleared() {
-            itemView.setBackgroundColor(Color.WHITE)
+            val tv = TypedValue()
+            context.theme.resolveAttribute(R.attr.clearedItemColor, tv, true)
+            val color = tv.data
+            itemView.setBackgroundColor(color)
         }
 
         override fun bind(item: ChatItem, listener: (ChatItem) -> Unit) {
@@ -98,6 +109,7 @@ class ChatAdapter(
                 Glide.with(itemView)
                     .load(item.avatar)
                     .into(iv_avatar_single)
+                Log.d("M_ChatAdapter", item.avatar)
             }
 
             sv_indicator.visibility = if (item.isOnline) View.VISIBLE else View.GONE
@@ -122,7 +134,7 @@ class ChatAdapter(
 
     inner class GroupViewHolder(containerView: View) :
         ChatItemViewHolder(containerView), ItemTouchViewHolder {
-
+// TODO
         override fun onItemSelected() {
             itemView.setBackgroundColor(Color.LTGRAY)
         }

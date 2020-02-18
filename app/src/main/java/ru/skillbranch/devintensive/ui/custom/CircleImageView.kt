@@ -58,7 +58,7 @@ class CircleImageView @JvmOverloads constructor(
                     DEFAULT_BORDER_COLOR
                 )
             borderWidth = typedArray.getDimension(
-                R.styleable.CircleImageView_cv_borderColor,
+                R.styleable.CircleImageView_cv_borderWidth,
                 context.dpToPx(DEFAULT_BORDER_WIDTH)
             )
             initials =

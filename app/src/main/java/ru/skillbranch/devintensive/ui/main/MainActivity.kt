@@ -1,5 +1,12 @@
 package ru.skillbranch.devintensive.ui.main
 
+//TODO list
+//color of snackbar and its text
+//onItemSelected and Clear color
+//avatars in chips
+//line between items is too long
+//multicolor fon of avatars
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -59,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
-        chatAdapter = ChatAdapter {
+        chatAdapter = ChatAdapter(this) {
             when (it.chatType) {
                 ChatType.ARCHIVE -> startActivity(Intent(this, ArchiveActivity::class.java))
                 else ->
@@ -76,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(divider)
         }
 
-        val touchCallback = ChatItemTouchHelperCallback(chatAdapter) {
+        val touchCallback = ChatItemTouchHelperCallback(chatAdapter, this) {
             viewModel.addToArchive(it.id)
 
             Snackbar.make(

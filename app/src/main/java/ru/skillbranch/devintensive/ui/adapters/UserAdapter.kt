@@ -49,6 +49,7 @@ class UserAdapter(val listener: (UserItem) -> Unit) :
         RecyclerView.ViewHolder(containerView), LayoutContainer {
 
         fun bind(user: UserItem, listener: (UserItem) -> Unit) {
+            iv_avatar_user.setBorderWidth(0)
             if (user.avatar != null) {
                 Glide.with(itemView)
                     .load(user.avatar)
