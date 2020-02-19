@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.activity_group.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.UserItem
 import ru.skillbranch.devintensive.ui.adapters.UserAdapter
+import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.GroupViewModel
 
 class GroupActivity : AppCompatActivity() {
@@ -99,6 +100,7 @@ class GroupActivity : AppCompatActivity() {
     }
 
     private fun addChipToGroup(user: UserItem) {
+        val chipBGColor = Utils.getColorFromResource(this, R.attr.colorAccentedSurface)
         val chip = Chip(this).apply {
             text = user.fullName
             chipIcon = resources.getDrawable(R.drawable.avatar_default, theme)
@@ -106,7 +108,8 @@ class GroupActivity : AppCompatActivity() {
             tag = user.id
             isClickable = true
             closeIconTint = ColorStateList.valueOf(Color.WHITE)
-            chipBackgroundColor = ColorStateList.valueOf(getColor(R.color.color_primary_light))
+//            chipBackgroundColor = ColorStateList.valueOf(getColor(R.color.color_primary_light))
+            chipBackgroundColor = ColorStateList.valueOf(chipBGColor)
             setTextColor(Color.WHITE)
         }
         chip.setOnCloseIconClickListener { viewModel.handleRemoveChip(it.tag.toString()) }

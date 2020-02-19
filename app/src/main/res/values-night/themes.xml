@@ -34,7 +34,7 @@
         <item name="chatItemDateStyle">@style/ChatItem.Date.Dark</item>
 
         <item name="snackbarBackgroundColor">@android:color/white</item>
-        <item name="snackbarTextColor">@color/color_accent_night</item>
+        <item name="snackbarActionTextColor">@color/color_accent_night</item>
 
         <item name="clearedItemColor">@color/color_background_night</item>
         <item name="selectedItemColor">@color/color_dk_gray</item>

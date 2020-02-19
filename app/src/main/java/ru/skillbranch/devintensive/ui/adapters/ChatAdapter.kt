@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.item_chat_single.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.data.ChatItem
 import ru.skillbranch.devintensive.models.data.ChatType
+import ru.skillbranch.devintensive.utils.Utils
 
 class ChatAdapter(
     var context: Context,
@@ -60,7 +61,13 @@ class ChatAdapter(
                 )
             )
             GROUP_TYPE -> GroupViewHolder(inflater.inflate(R.layout.item_chat_group, parent, false))
-            ARCHIVE_TYPE -> ArchiveViewHolder(inflater.inflate(R.layout.item_chat_archive, parent, false))
+            ARCHIVE_TYPE -> ArchiveViewHolder(
+                inflater.inflate(
+                    R.layout.item_chat_archive,
+                    parent,
+                    false
+                )
+            )
             else -> SingleViewHolder(inflater.inflate(R.layout.item_chat_group, parent, false))
         }
     }
@@ -87,17 +94,12 @@ class ChatAdapter(
         ChatItemViewHolder(containerView), ItemTouchViewHolder {
 
         override fun onItemSelected() {
-//            TODO make function
-            val tv = TypedValue()
-            context.theme.resolveAttribute(R.attr.selectedItemColor, tv, true)
-            val color = tv.data
+            val color = Utils.getColorFromResource(context, R.attr.selectedItemColor)
             itemView.setBackgroundColor(color)
         }
 
         override fun onItemCleared() {
-            val tv = TypedValue()
-            context.theme.resolveAttribute(R.attr.clearedItemColor, tv, true)
-            val color = tv.data
+            val color = Utils.getColorFromResource(context, R.attr.clearedItemColor)
             itemView.setBackgroundColor(color)
         }
 
@@ -134,13 +136,14 @@ class ChatAdapter(
 
     inner class GroupViewHolder(containerView: View) :
         ChatItemViewHolder(containerView), ItemTouchViewHolder {
-// TODO
         override fun onItemSelected() {
-            itemView.setBackgroundColor(Color.LTGRAY)
+            val color = Utils.getColorFromResource(context, R.attr.selectedItemColor)
+            itemView.setBackgroundColor(color)
         }
 
         override fun onItemCleared() {
-            itemView.setBackgroundColor(Color.WHITE)
+            val color = Utils.getColorFromResource(context, R.attr.clearedItemColor)
+            itemView.setBackgroundColor(color)
         }
 
         override fun bind(item: ChatItem, listener: (ChatItem) -> Unit) {

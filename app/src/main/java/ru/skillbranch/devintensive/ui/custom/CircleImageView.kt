@@ -15,6 +15,7 @@ import androidx.core.graphics.toRectF
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.extensions.dpToPx
 import ru.skillbranch.devintensive.extensions.pxToDp
+import ru.skillbranch.devintensive.utils.Utils
 
 /* Custom circle ImageView with borders */
 class CircleImageView @JvmOverloads constructor(
@@ -30,6 +31,17 @@ class CircleImageView @JvmOverloads constructor(
         private const val DEFAULT_INITIALS = ""
         private const val DEFAULT_INITIALS_TEXT_COLOR = Color.WHITE
         private const val DEFAULT_INITIALS_BACKGROUND_COLOR = R.attr.colorAccent
+
+        val bgColors = arrayOf(
+            Color.parseColor("#7BC862"),
+            Color.parseColor("#E17076"),
+            Color.parseColor("#FAA774"),
+            Color.parseColor("#6EC9CB"),
+            Color.parseColor("#65AADD"),
+            Color.parseColor("#A695E7"),
+            Color.parseColor("#EE7AAE"),
+            Color.parseColor("#2196F3")
+        )
     }
 
     @ColorInt
@@ -68,13 +80,15 @@ class CircleImageView @JvmOverloads constructor(
         }
 
         // Get colorAccent and set it to initialsBackgroundColor
-        val attributes = intArrayOf(R.attr.colorAccent)
-        val typedArray = context.obtainStyledAttributes(R.style.AppTheme, attributes)
-        initialsBackgroundColor = typedArray.getColor(0, DEFAULT_INITIALS_BACKGROUND_COLOR)
-        typedArray.recycle()
-//        val color = TypedValue()
-//        context.theme.resolveAttribute(R.attr.colorAccent, color, true)
-//        initialsBackgroundColor = color.data
+        /*1st way*/
+//        val attributes = intArrayOf(R.attr.colorAccent)
+//        val typedArray = context.obtainStyledAttributes(R.style.AppTheme, attributes)
+//        initialsBackgroundColor = typedArray.getColor(0, DEFAULT_INITIALS_BACKGROUND_COLOR)
+//        typedArray.recycle()
+        /*2nd way*/
+//        val color = Utils.getColorFromResource(context, R.attr.colorAccent)
+        /*Not used because of realisation in the drawAvatar*/
+//        initialsBackgroundColor = color
 
         scaleType = ScaleType.CENTER_CROP
         setup()
@@ -162,7 +176,7 @@ class CircleImageView @JvmOverloads constructor(
 
     private fun drawInitials(canvas: Canvas) {
         // Draw background color
-        initialsPaint.color = initialsBackgroundColor
+        initialsPaint.color = initialsToColor(initials)
         canvas.drawOval(viewRect.toRectF(), initialsPaint)
 
         // Draw text
@@ -173,6 +187,14 @@ class CircleImageView @JvmOverloads constructor(
         }
         val offsetY = (initialsPaint.descent() + initialsPaint.ascent()) / 2
         canvas.drawText(initials, viewRect.exactCenterX(), viewRect.exactCenterY() - offsetY, initialsPaint)
+    }
+
+    private fun initialsToColor(letters: String): Int {
+        val byte = if (!letters.isNullOrEmpty()) letters[0].toByte() else 0
+        val len = bgColors.size
+        val deg = byte / len.toDouble()
+        val index = ((deg % 1) * len).toInt()
+        return bgColors[index]
     }
 
     @Dimension

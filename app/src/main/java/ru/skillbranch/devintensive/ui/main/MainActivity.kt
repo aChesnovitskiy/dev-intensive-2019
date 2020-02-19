@@ -1,11 +1,8 @@
 package ru.skillbranch.devintensive.ui.main
 
 //TODO list
-//color of snackbar and its text
-//onItemSelected and Clear color
-//avatars in chips
-//line between items is too long
-//multicolor fon of avatars
+//avatars in chips and colors of (X)
+// size of archive avatar
 
 import android.content.Intent
 import android.os.Bundle
@@ -25,6 +22,7 @@ import ru.skillbranch.devintensive.ui.adapters.ChatAdapter
 import ru.skillbranch.devintensive.ui.adapters.ChatItemTouchHelperCallback
 import ru.skillbranch.devintensive.ui.archive.ArchiveActivity
 import ru.skillbranch.devintensive.ui.group.GroupActivity
+import ru.skillbranch.devintensive.utils.Utils
 import ru.skillbranch.devintensive.viewmodels.MainViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -83,6 +81,9 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(divider)
         }
 
+        val snackbarBackgroundColor = Utils.getColorFromResource(this, R.attr.snackbarBackgroundColor)
+        val snackbarActionTextColor = Utils.getColorFromResource(this, R.attr.snackbarActionTextColor)
+
         val touchCallback = ChatItemTouchHelperCallback(chatAdapter, this) {
             viewModel.addToArchive(it.id)
 
@@ -91,9 +92,9 @@ class MainActivity : AppCompatActivity() {
                 "Вы точно хотите добавить ${it.title} в архив?",
                 Snackbar.LENGTH_LONG
             )
-                .setAction("Отмена") { _ ->
-                    viewModel.restoreFromArchive(it.id)
-                }
+                .setAction("Отмена") { _ -> viewModel.restoreFromArchive(it.id) }
+                .setBackgroundTint(snackbarBackgroundColor)
+                .setActionTextColor(snackbarActionTextColor)
                 .show()
         }
 

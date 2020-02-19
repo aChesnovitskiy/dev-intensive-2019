@@ -33,7 +33,7 @@
         <item name="chatItemDateStyle">@style/ChatItem.Date.Light</item>
 
         <item name="snackbarBackgroundColor">@color/color_primary</item>
-        <item name="snackbarTextColor">@color/color_accent</item>
+        <item name="snackbarActionTextColor">@color/color_accent</item>
 
         <item name="clearedItemColor">@android:color/white</item>
         <item name="selectedItemColor">@color/color_lt_gray</item>

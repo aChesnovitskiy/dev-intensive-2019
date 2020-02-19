@@ -1,5 +1,7 @@
 package ru.skillbranch.devintensive.utils
 
+import android.content.Context
+import android.util.TypedValue
 import ru.skillbranch.devintensive.models.BaseMessage
 import ru.skillbranch.devintensive.models.ImageMessage
 import ru.skillbranch.devintensive.models.TextMessage
@@ -97,5 +99,11 @@ object Utils {
         is ImageMessage -> "${message.from.firstName} - отправил фото" to null
         null -> "Сообщений еще нет" to null
         else -> error("not expected message type")
+    }
+
+    fun getColorFromResource(context: Context, resId: Int): Int {
+        val tv = TypedValue()
+        context.theme.resolveAttribute(resId, tv, true)
+        return tv.data
     }
 }
