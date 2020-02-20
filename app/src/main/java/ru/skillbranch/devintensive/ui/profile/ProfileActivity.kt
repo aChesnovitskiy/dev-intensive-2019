@@ -10,7 +10,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import kotlinx.android.synthetic.main.activity_profile.*
 import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.models.Profile
@@ -46,7 +46,7 @@ class ProfileActivity : AppCompatActivity() {
 
     /* Initialize ViewModel */
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(ProfileViewModel::class.java)
         // Set observer for profile LiveData
         viewModel.getProfileData().observe(this, Observer { updateUI(it)})
         // Set observer for appTheme LiveData
