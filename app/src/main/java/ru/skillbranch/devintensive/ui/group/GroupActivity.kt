@@ -2,10 +2,7 @@ package ru.skillbranch.devintensive.ui.group
 
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
-import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.children
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
@@ -87,7 +84,7 @@ class GroupActivity : AppCompatActivity() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this).get(GroupViewModel::class.java)
+        viewModel = ViewModelProviders.of(this).get(GroupViewModel::class.java)
         viewModel.getUserData().observe(this, Observer { userAdapter.updateData(it) })
         viewModel.getSelectedData().observe(this, Observer {
             updateChips(it)
@@ -101,17 +98,19 @@ class GroupActivity : AppCompatActivity() {
 
     private fun addChipToGroup(user: UserItem) {
         val chipBGColor = Utils.getColorFromResource(this, R.attr.colorAccentedSurface)
+        val chipCloseColor = Utils.getColorFromResource(this, R.attr.colorChipClose)
+
         val chip = Chip(this).apply {
             text = user.fullName
             chipIcon = resources.getDrawable(R.drawable.avatar_default, theme)
             isCloseIconVisible = true
             tag = user.id
             isClickable = true
-            closeIconTint = ColorStateList.valueOf(Color.WHITE)
-//            chipBackgroundColor = ColorStateList.valueOf(getColor(R.color.color_primary_light))
+            closeIconTint = ColorStateList.valueOf(chipCloseColor)
             chipBackgroundColor = ColorStateList.valueOf(chipBGColor)
             setTextColor(Color.WHITE)
         }
+
         chip.setOnCloseIconClickListener { viewModel.handleRemoveChip(it.tag.toString()) }
         chip_group.addView(chip)
     }

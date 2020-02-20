@@ -38,6 +38,8 @@
 
         <item name="clearedItemColor">@color/color_background_night</item>
         <item name="selectedItemColor">@color/color_dk_gray</item>
+
+        <item name="colorChipClose">@color/color_gray</item>
     </style>
 
 </resources>

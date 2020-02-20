@@ -33,4 +33,6 @@
 
     <attr name="colorOnSecondary" format="reference|color"/>
     <attr name="colorSecondary" format="reference|color"/>
+
+    <attr name="colorChipClose" format="reference|color"/>
 </resources>

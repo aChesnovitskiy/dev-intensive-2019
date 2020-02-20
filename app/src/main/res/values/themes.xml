@@ -37,6 +37,8 @@
 
         <item name="clearedItemColor">@android:color/white</item>
         <item name="selectedItemColor">@color/color_lt_gray</item>
+
+        <item name="colorChipClose">@android:color/white</item>
     </style>
 
 </resources>
