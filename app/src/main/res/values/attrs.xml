@@ -30,4 +30,7 @@
 
     <attr name="clearedItemColor" format="reference|color"/>
     <attr name="selectedItemColor" format="reference|color"/>
+
+    <attr name="colorOnSecondary" format="reference|color"/>
+    <attr name="colorSecondary" format="reference|color"/>
 </resources>
