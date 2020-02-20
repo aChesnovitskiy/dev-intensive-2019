@@ -93,8 +93,8 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.LENGTH_LONG
             )
                 .setAction("Отмена") { _ -> viewModel.restoreFromArchive(it.id) }
-                .setBackgroundTint(snackbarBackgroundColor)
-                .setActionTextColor(snackbarActionTextColor)
+//                .setBackgroundTint(snackbarBackgroundColor) TODO cancel //
+//                .setActionTextColor(snackbarActionTextColor)
                 .show()
         }
 

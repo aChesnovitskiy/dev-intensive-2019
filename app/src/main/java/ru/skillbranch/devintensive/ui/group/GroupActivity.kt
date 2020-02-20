@@ -103,6 +103,7 @@ class GroupActivity : AppCompatActivity() {
         val chip = Chip(this).apply {
             text = user.fullName
             chipIcon = resources.getDrawable(R.drawable.avatar_default, theme)
+            chipIcon = resources.getDrawable(R.drawable.avatar_default, theme)
             isCloseIconVisible = true
             tag = user.id
             isClickable = true

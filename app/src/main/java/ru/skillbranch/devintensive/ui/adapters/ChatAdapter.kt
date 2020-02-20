@@ -111,7 +111,6 @@ class ChatAdapter(
                 Glide.with(itemView)
                     .load(item.avatar)
                     .into(iv_avatar_single)
-                Log.d("M_ChatAdapter", item.avatar)
             }
 
             sv_indicator.visibility = if (item.isOnline) View.VISIBLE else View.GONE
