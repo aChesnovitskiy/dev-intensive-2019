@@ -1,9 +1,8 @@
 package ru.skillbranch.devintensive.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import ru.skillbranch.devintensive.R
 import ru.skillbranch.devintensive.extensions.mutableLiveData
 import ru.skillbranch.devintensive.extensions.shortFormat
 import ru.skillbranch.devintensive.models.BaseMessage
@@ -15,8 +14,9 @@ import ru.skillbranch.devintensive.models.data.ChatType
 import ru.skillbranch.devintensive.repositories.ChatRepository
 import ru.skillbranch.devintensive.utils.Utils
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val context = getApplication<Application>().applicationContext
     private val query = mutableLiveData("")
     private val chatRepository = ChatRepository
     private val chats = Transformations.map(chatRepository.loadChats()){chats ->
@@ -57,7 +57,7 @@ class MainViewModel : ViewModel() {
             "archive",
             null,
             "",
-            "",
+            context.getString(R.string.archive_of_chats),
             lastMessageShort.first,
             messageCount,
             lastMessage?.date?.shortFormat(),
